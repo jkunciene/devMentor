@@ -1,12 +1,17 @@
+import { Link, generatePath } from 'react-router-dom';
 import { Movie } from 'api/movies/types';
 import { StarIcon } from 'components/Icons';
+import { RouteKey } from 'navigation/routes';
 
 import styles from './MovieCard.module.css';
 
-const MovieCard = ({ posterPath, releaseDate, title, voteAverage }: Movie): JSX.Element => {
+const MovieCard = ({ posterPath, releaseDate, title, voteAverage, movieId }: Movie): JSX.Element => {
+  const movieLink = generatePath(RouteKey.Movie, { id: `${movieId}` });
   return (
     <div className={styles.movieCardWrapper}>
-      <img alt={`${title}-movie-poster`} className={styles.movieImage} loading="lazy" src={posterPath} />
+      <Link to={movieLink}>
+        <img alt={`${title}-movie-poster`} className={styles.movieImage} loading="lazy" src={posterPath} />
+      </Link>
       <div className={styles.movieInfoWrapper}>
         <div>
           <p className={styles.movieInfoParagraph}>

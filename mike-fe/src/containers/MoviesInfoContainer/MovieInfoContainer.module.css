@@ -1,0 +1,107 @@
+.backdropImage {
+    background-position: right -200px top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 -50px;
+    max-width: 100%;
+    padding: 0 50px;
+}
+
+.backdropCover {
+    background-image: linear-gradient(to right, rgba(99.75%, 97.53%, 99.24%, 1) 150px, rgba(99.75%, 99.53%, 99.24%, 0.84) 80%);
+    margin: 0 -50px;
+    padding: 0 50px;
+}
+
+.movieInfoWrapper {
+    min-height: 100vh;
+    padding: 40px 0;
+}
+
+.movieSection {
+    display: flex;
+}
+
+.moviePosterWrapper {
+    max-width: 400px;
+    min-width: 300px;
+}
+
+.moviePoster {
+    width: 100%;
+}
+
+.movieDataWrapper {
+    padding-left: 30px;
+}
+
+.movieDataHeader {
+    display: flex;
+    flex-direction: column;
+    text-align: baseline;
+}
+
+.movieDataHeader h2 {
+    margin: 0 10px 0 0;
+}
+
+.movieDataHeader > h3 {
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 400;
+    margin:5px 0 0;
+
+}
+
+.movieDataHeaderDate {
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+.tagList {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.dataList {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    margin: 10px 0 0;
+}
+
+.dataList > span {
+    align-items: center;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.dataList > span > dt {
+   margin-right: 5px;
+}
+
+.dataList > span > dd {
+    margin: 0;
+ }
+
+.descriptionContainer {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+    .movieSection {
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .movieDataWrapper {
+        padding: 20px 0 0;
+    }
+}
