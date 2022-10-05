@@ -42,6 +42,29 @@ const getMovie = async (movieId: number): Promise<MovieDetails> => {
 
     return movieDetails[movieId];
 
-}
+};
 
-export { getMovies, getMovie }
+const searchMoviesByTitle = async (page: number, title: string): Promise<Movies> => {
+    const { data } = await axios.get<TmdbMovies>(
+        `https://api.themoviedb.org/3/search/movie?query=${title}&page=${page}&api_key=${process.env.API_KEY}`,
+    );
+
+    return {
+        page,
+        movies: data.results.map(convertToMovie),
+        totalPages: data.total_pages,
+    };
+};
+
+const searchMoviesByGenre = async (page: number, genres: number[]) : Promise<Movies> => {
+    const { data } = await axios.get<TmdbMovies>(
+        `https://api.themoviedb.org/3/discover/movie?with_genres=${genres}&page=${page}&vote_count.gte=1000&api_key=${process.env.API_KEY}`,
+    );
+
+    return {
+        page,
+        movies: data.results.map(convertToMovie),
+        totalPages: data.total_pages,
+    }
+}
+export { getMovies, getMovie, searchMoviesByTitle, searchMoviesByGenre }

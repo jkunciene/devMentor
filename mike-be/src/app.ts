@@ -6,10 +6,12 @@ import sanitize from 'express-mongo-sanitize';
 import { connectToMongoDb, CORS, isLambdaRuntime } from './commons';
 import healthRoutes from './routes/health.routes';
 import movieRoutes from './routes/movie.routes';
+import genreRoutes from './routes/genre.routes';
+import sortOptionRoutes from './routes/sort-option.routes';
 
 dotenv.config();
 
-if (!isLambdaRuntime()) {
+if (!isLambdaRuntime() && process.env.NODE_ENV !== 'test') {
   connectToMongoDb();
 }
 
@@ -22,6 +24,8 @@ app.use(sanitize());
 
 app.use('/health', healthRoutes);
 app.use('/movies', movieRoutes);
+app.use('/genres', genreRoutes);
+app.use('/sort-options', sortOptionRoutes);
 
 const errorLogger: ErrorRequestHandler = (err, _req, _res, next) => {
   console.error(err.stack);
@@ -39,8 +43,10 @@ app.use((_req: express.Request, res: express.Response) => {
   res.status(404).json({ error: 'Not found' });
 });
 
-app.listen(3001, () => {
-  console.log('Aapplication started');
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(3001, () => {
+    console.log('Aapplication started');
+  });
+}
 
 export default app;
